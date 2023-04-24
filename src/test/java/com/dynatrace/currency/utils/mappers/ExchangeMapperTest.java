@@ -1,4 +1,4 @@
-package com.dynatrace.currency.nbpClient.mappers;
+package com.dynatrace.currency.utils.mappers;
 
 import com.dynatrace.currency.averageExchange.AverageExchange;
 import com.dynatrace.currency.averageExchange.AverageRate;
