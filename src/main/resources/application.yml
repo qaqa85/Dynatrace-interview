@@ -1,0 +1,5 @@
+com:
+  org:
+    dyntrance:
+      nbpClient:
+        url: http://api.nbp.pl/api/exchangerates
