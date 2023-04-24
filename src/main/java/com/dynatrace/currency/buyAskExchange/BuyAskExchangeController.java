@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/buy-ask")
+@RequestMapping("/api/v1/exchanges/buy-ask")
 public class BuyAskExchangeController {
     private final BuyAskExchangeService service;
 

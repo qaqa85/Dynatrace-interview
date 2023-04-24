@@ -40,7 +40,7 @@ class BuyAskExchangeControllerTest {
                 .willThrow(new InvalidCurrencyCodeException("Invalid code"));
 
         // WHEN & THEN
-        mockMvc.perform(get("/api/v1/buy-ask/USD?last=2"))
+        mockMvc.perform(get("/api/v1/exchanges/buy-ask/USD?last=2"))
                 .andDo(print())
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$").value("Invalid code"));
@@ -55,7 +55,7 @@ class BuyAskExchangeControllerTest {
                 .willReturn(getMajorDifferenceDto().build());
 
         // WHEN & THEN
-        mockMvc.perform(get("/api/v1/buy-ask/USD?last=1"))
+        mockMvc.perform(get("/api/v1/exchanges/buy-ask/USD?last=1"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.difference.difference").value(new BigDecimal("1.0")))

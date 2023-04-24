@@ -23,7 +23,7 @@ public class BuyAskExchangeIntegrationTest {
 
     @Test
     void shouldReturnRequestedDataFromNBP() throws Exception {
-        mockMvc.perform(get("/api/v1/buy-ask/{currencyCode}", "USD")
+        mockMvc.perform(get("/api/v1/exchanges/buy-ask/{currencyCode}", "USD")
                 .content(MediaType.APPLICATION_JSON_VALUE)
                 .param("last", "3"))
                 .andDo(print())
