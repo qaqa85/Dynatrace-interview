@@ -15,6 +15,6 @@ public class BuyAskExchangeController {
     MajorDifferenceDto getMajorDifference(
             @PathVariable("code") String currencyCode,
             @RequestParam("last") String quotations) {
-        return service.getMajorDifferenceIn(currencyCode, quotations);
+        return service.getMajorDifference(currencyCode, quotations);
     }
 }

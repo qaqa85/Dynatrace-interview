@@ -1,8 +1,8 @@
 package com.dynatrace.currency.averageExchange;
 
 import com.dynatrace.currency.averageExchange.dto.AverageDto;
-import com.dynatrace.currency.averageExchange.dto.SingleAverageExchangeDto;
-import com.dynatrace.currency.averageExchange.dto.SingleAverageExchangeDto.SingleAverageExchangeDtoBuilder;
+import com.dynatrace.currency.averageExchange.dto.SingleAverageDto;
+import com.dynatrace.currency.averageExchange.dto.SingleAverageDto.SingleAverageDtoBuilder;
 import com.dynatrace.currency.nbpClient.exceptions.NoDataException;
 import com.dynatrace.currency.utils.exceptions.InvalidCurrencyCodeException;
 import com.dynatrace.currency.utils.exceptions.InvalidDateException;
@@ -92,8 +92,8 @@ class AverageExchangeControllerTest {
                 .andExpect(jsonPath("$.average.value").value(new BigDecimal("0.245")));
     }
 
-    private SingleAverageExchangeDtoBuilder getSingleAverageExchangeDto() {
-        return SingleAverageExchangeDto.builder()
+    private SingleAverageDtoBuilder getSingleAverageExchangeDto() {
+        return SingleAverageDto.builder()
                 .currencyCode(Currency.getInstance("USD"))
                 .average(new AverageDto(DATE, new BigDecimal("0.245")));
     }

@@ -43,7 +43,7 @@ class BuyAskExchangeServiceTest {
     @ValueSource(strings = {"invalidNumber", "-10", "0", "256"})
     void shouldThrowInvalidLastQuotationsNumberExceptionWhenNumberIsInvalid(String invalidNumber) {
         // WHEN & THEN
-        assertThatThrownBy(() -> service.getMajorDifferenceIn(CURRENCY_CODE, invalidNumber))
+        assertThatThrownBy(() -> service.getMajorDifference(CURRENCY_CODE, invalidNumber))
                 .isInstanceOf(InvalidLastQuotationsNumberException.class)
                 .hasMessageStartingWith("Quotations number out of scope");
     }
@@ -52,7 +52,7 @@ class BuyAskExchangeServiceTest {
     @DisplayName("should throw invalid InvalidCurrencyCodeException when code is invalid")
     void shouldThrowInvalidCurrencyCodeExceptionWhenCodeIsInvalid() {
         // WHEN & THEN
-        assertThatThrownBy(() -> service.getMajorDifferenceIn("InvalidCode", QUOTATIONS_NUMBER))
+        assertThatThrownBy(() -> service.getMajorDifference("InvalidCode", QUOTATIONS_NUMBER))
                 .isInstanceOf(InvalidCurrencyCodeException.class)
                 .hasMessageStartingWith("Invalid currency code");
     }
@@ -69,7 +69,7 @@ class BuyAskExchangeServiceTest {
         given(nbpClient.getBuyAskExchange(any(Currency.class), anyInt())).willReturn(buyAskExchange);
 
         // WHEN
-        var result = service.getMajorDifferenceIn(CURRENCY_CODE, QUOTATIONS_NUMBER);
+        var result = service.getMajorDifference(CURRENCY_CODE, QUOTATIONS_NUMBER);
 
         // THEN
         assertThat(result).isInstanceOf(MajorDifferenceDto.class);
@@ -90,7 +90,7 @@ class BuyAskExchangeServiceTest {
         given(nbpClient.getBuyAskExchange(any(Currency.class), anyInt())).willReturn(buyAskExchange);
 
         // WHEN
-        var result = service.getMajorDifferenceIn(CURRENCY_CODE, QUOTATIONS_NUMBER);
+        var result = service.getMajorDifference(CURRENCY_CODE, QUOTATIONS_NUMBER);
 
         // THEN
         assertThat(result).isInstanceOf(MajorDifferenceDto.class);

@@ -36,7 +36,7 @@ class BuyAskExchangeControllerTest {
     @DisplayName("should return BadRequest when CurrencyCode is incorrect")
     public void shouldReturnBadRequestWhenCurrencyCodeIsIncorrect() throws Exception {
         // GIVEN
-        given(service.getMajorDifferenceIn(anyString(), anyString()))
+        given(service.getMajorDifference(anyString(), anyString()))
                 .willThrow(new InvalidCurrencyCodeException("Invalid code"));
 
         // WHEN & THEN
@@ -51,7 +51,7 @@ class BuyAskExchangeControllerTest {
     @DisplayName("should return BadRequest when quotation is invalid")
     public void shouldReturnBadRequestWhenQuotationIsInvalid() throws Exception {
         // GIVEN
-        given(service.getMajorDifferenceIn(anyString(), anyString()))
+        given(service.getMajorDifference(anyString(), anyString()))
                 .willThrow(new InvalidLastQuotationsNumberException("Quotations number out of scope"));
 
         // WHEN & THEN
@@ -65,7 +65,7 @@ class BuyAskExchangeControllerTest {
     @DisplayName("should return MajorDifferenceDto on successful")
     public void shouldReturnMajorDifferenceDtoOnSuccessful() throws Exception {
         // GIVEN
-        given(service.getMajorDifferenceIn(anyString(), anyString()))
+        given(service.getMajorDifference(anyString(), anyString()))
                 .willReturn(getMajorDifferenceDto().build());
 
         // WHEN & THEN

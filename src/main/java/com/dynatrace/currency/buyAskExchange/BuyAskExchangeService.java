@@ -18,7 +18,7 @@ import static com.dynatrace.currency.utils.converters.Converter.getQuotationsFro
 class BuyAskExchangeService {
     private final NbpClient nbpClient;
 
-    public MajorDifferenceDto getMajorDifferenceIn(String currencyCode, String lastQuotations) {
+    public MajorDifferenceDto getMajorDifference(String currencyCode, String lastQuotations) {
         Currency currency = getCurrencyFromString(currencyCode);
         Integer quotations = getQuotationsFromString(lastQuotations);
 

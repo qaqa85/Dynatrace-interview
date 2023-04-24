@@ -1,6 +1,6 @@
 package com.dynatrace.currency.averageExchange;
 
-import com.dynatrace.currency.averageExchange.dto.SingleAverageExchangeDto;
+import com.dynatrace.currency.averageExchange.dto.SingleAverageDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +13,7 @@ public class AverageExchangeController {
     private final AverageExchangeService service;
 
     @GetMapping(produces = APPLICATION_JSON_VALUE, path = "/{code}")
-    SingleAverageExchangeDto getSingleAverageExchange(
+    SingleAverageDto getSingleAverageExchange(
             @PathVariable("code") String currencyCode,
             @RequestParam String date) {
         return service.getSingleAverageExchangeDto(currencyCode, date);
