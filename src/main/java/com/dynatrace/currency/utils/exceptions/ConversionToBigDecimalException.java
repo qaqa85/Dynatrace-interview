@@ -1,4 +1,4 @@
-package com.dynatrace.currency.utils.converters.exceptions;
+package com.dynatrace.currency.utils.exceptions;
 
 public class ConversionToBigDecimalException extends RuntimeException {
     public ConversionToBigDecimalException() {

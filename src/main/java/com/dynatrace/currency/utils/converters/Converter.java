@@ -1,15 +1,15 @@
 package com.dynatrace.currency.utils.converters;
 
-import com.dynatrace.currency.utils.converters.exceptions.ConversionToBigDecimalException;
-import com.dynatrace.currency.utils.converters.exceptions.ConversionToCurrencyException;
-import com.dynatrace.currency.utils.exceptions.InvalidCurrencyCodeException;
-import com.dynatrace.currency.utils.exceptions.InvalidLastQuotationsNumberException;
+import com.dynatrace.currency.utils.exceptions.*;
 import com.dynatrace.currency.utils.validators.Validator;
 import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Currency;
 import java.util.Optional;
+
+import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
 
 @Slf4j
 public class Converter {
@@ -47,5 +47,14 @@ public class Converter {
                 .map(Integer::parseInt)
                 .orElseThrow(
                         () -> new InvalidLastQuotationsNumberException("Quotations number out of scope [1-255]"));
+    }
+
+    public static LocalDate getLocalDateFromString(String string) {
+        return Optional.ofNullable(string)
+                .filter(Validator::isDateValid)
+                .map(date -> LocalDate.parse(date, ISO_LOCAL_DATE))
+                .orElseThrow(
+                        () -> new InvalidDateException("Invalid date. Insert date in format YYYY-MM-DD")
+                );
     }
 }

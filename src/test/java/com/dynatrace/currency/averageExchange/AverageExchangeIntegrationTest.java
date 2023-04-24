@@ -1,4 +1,4 @@
-package com.dynatrace.currency.buyAskExchange;
+package com.dynatrace.currency.averageExchange;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,15 +17,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class BuyAskExchangeIntegrationTest {
+public class AverageExchangeIntegrationTest {
     @Autowired
     private MockMvc mockMvc;
 
     @Test
     void shouldReturnRequestedDataFromNBP() throws Exception {
-        mockMvc.perform(get("/api/v1/exchanges/buy-ask/{currencyCode}", "USD")
-                .content(MediaType.APPLICATION_JSON_VALUE)
-                .param("last", "3"))
+        mockMvc.perform(get("/api/v1/exchanges/average/{currencyCode}", "USD")
+                        .content(MediaType.APPLICATION_JSON_VALUE)
+                        .param("date", "2023-04-20"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.currencyCode").value("USD"));
