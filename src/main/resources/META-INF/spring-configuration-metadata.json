@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "com.org.dyntrance.nbpClient.url",
+      "type": "java.lang.String",
+      "description": "Base url to NBP API"
+    }
+  ]
+}
