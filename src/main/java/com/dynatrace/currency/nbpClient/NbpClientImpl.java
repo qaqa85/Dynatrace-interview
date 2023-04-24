@@ -33,8 +33,8 @@ class NbpClientImpl implements NbpClient {
     private static final String TABLE_A = "/a";
     public static final String TABLE_C = "/c";
     private static final String SINGLE_CURRENCY = "/rates";
-    private static final String CODE_400_EXCEPTION_MESSAGE = "Correct request but no data found";
-    private static final String CODE_404_EXCEPTION_MESSAGE = "Invalid request";
+    private static final String CODE_400_EXCEPTION_MESSAGE = "Invalid request";
+    private static final String CODE_404_EXCEPTION_MESSAGE = "No data for specific day. Fix request or try later";
     private static final String CURRENCY_VALUE_ERROR_MESSAGE = "Currency cannot be null";
     private static final String DATE_VALUE_ERROR_MESSAGE = "Date cannot be null";
     private static final String QUANTITY_ERROR_MESSAGE = "Cannot be null";

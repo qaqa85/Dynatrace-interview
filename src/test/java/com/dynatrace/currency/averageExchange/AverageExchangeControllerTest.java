@@ -3,6 +3,7 @@ package com.dynatrace.currency.averageExchange;
 import com.dynatrace.currency.averageExchange.dto.AverageDto;
 import com.dynatrace.currency.averageExchange.dto.SingleAverageExchangeDto;
 import com.dynatrace.currency.averageExchange.dto.SingleAverageExchangeDto.SingleAverageExchangeDtoBuilder;
+import com.dynatrace.currency.nbpClient.exceptions.NoDataException;
 import com.dynatrace.currency.utils.exceptions.InvalidCurrencyCodeException;
 import com.dynatrace.currency.utils.exceptions.InvalidDateException;
 import org.junit.jupiter.api.DisplayName;
@@ -58,6 +59,21 @@ class AverageExchangeControllerTest {
                 .andDo(print())
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$").value("Invalid date"));
+    }
+
+    @Test
+    @DisplayName("should return NotFound when no data for specific day")
+    public void getSingleAverageExchangeDtoShouldReturnNotFoundWhenNoDataForSpecificDat() throws Exception {
+        // GIVEN
+        given(service.getSingleAverageExchangeDto(anyString(), anyString()))
+                .willThrow(new NoDataException("no data"));
+
+        // WHEN & THEN
+        mockMvc.perform(get("/api/v1/exchanges/average/USD?date=2023.04.22"))
+                .andDo(print())
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$").value("no data"));
+
     }
 
     @Test
