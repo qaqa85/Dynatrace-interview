@@ -25,24 +25,24 @@ public interface NbpClient {
      * returns an object that contains a list of {@link AverageRate} and inserted currency code.
      *
      * @param currency Currency code in accordance with ISO 4217
-     * @param quantity number of last quotations
+     * @param quotations number of last quotations
      * @return the {@code AverageExchange} instance that contains requested rates and the currency code
      * @throws NullPointerException                                                if {@code currency} or {@code quantity} is null
      * @throws com.dynatrace.currency.nbpClient.exceptions.NoDataException         if request is valid but data not found
      * @throws com.dynatrace.currency.nbpClient.exceptions.InvalidRequestException if request is invalid
      */
-    AverageExchange getAverageExchange(Currency currency, Integer quantity);
+    AverageExchange getAverageExchange(Currency currency, Integer quotations);
 
 
     /**
      * returns an object that contains list of {@link BuyAskExchange} and inserted currency code.
      *
      * @param currency Currency code in accordance with ISO 4217
-     * @param quantity number of last quotations
+     * @param quotations number of last quotations
      * @return the {@code BuyAskExchange} instance that contains requested rates and the currency code
      * @throws NullPointerException                                                if {@code currency} or {@code quantity} is null
      * @throws com.dynatrace.currency.nbpClient.exceptions.NoDataException         if request is valid but data not found
      * @throws com.dynatrace.currency.nbpClient.exceptions.InvalidRequestException if request is invalid
      */
-    BuyAskExchange getBuyAskExchange(Currency currency, Integer quantity);
+    BuyAskExchange getBuyAskExchange(Currency currency, Integer quotations);
 }

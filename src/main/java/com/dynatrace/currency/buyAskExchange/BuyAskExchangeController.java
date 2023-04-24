@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 public class BuyAskExchangeController {
     private final BuyAskExchangeService service;
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "/{code}")
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/{code}")
     MajorDifferenceDto getMajorDifference(
             @PathVariable("code") String currencyCode,
             @RequestParam("last") String quotations) {
