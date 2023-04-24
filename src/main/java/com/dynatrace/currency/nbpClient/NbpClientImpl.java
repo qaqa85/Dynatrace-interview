@@ -7,7 +7,7 @@ import com.dynatrace.currency.nbpClient.dtos.AverageExchangeDto;
 import com.dynatrace.currency.nbpClient.dtos.BuyAskExchangeDto;
 import com.dynatrace.currency.nbpClient.exceptions.InvalidRequestException;
 import com.dynatrace.currency.nbpClient.exceptions.NoDataException;
-import com.dynatrace.currency.averageExchange.mappers.ExchangeMapper;
+import com.dynatrace.currency.utils.mappers.ExchangeMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;

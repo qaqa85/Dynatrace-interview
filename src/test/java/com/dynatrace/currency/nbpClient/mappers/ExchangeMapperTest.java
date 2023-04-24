@@ -2,8 +2,6 @@ package com.dynatrace.currency.nbpClient.mappers;
 
 import com.dynatrace.currency.averageExchange.AverageExchange;
 import com.dynatrace.currency.averageExchange.AverageRate;
-import com.dynatrace.currency.averageExchange.mappers.ExchangeMapper;
-import com.dynatrace.currency.averageExchange.mappers.RateMapper;
 import com.dynatrace.currency.buyAskExchange.BuyAskExchange;
 import com.dynatrace.currency.buyAskExchange.BuyAskRate;
 import com.dynatrace.currency.nbpClient.dtos.AverageExchangeDto;
@@ -12,8 +10,10 @@ import com.dynatrace.currency.nbpClient.dtos.AverageRateDto;
 import com.dynatrace.currency.nbpClient.dtos.BuyAskExchangeDto;
 import com.dynatrace.currency.nbpClient.dtos.BuyAskExchangeDto.BuyAskExchangeDtoBuilder;
 import com.dynatrace.currency.nbpClient.dtos.BuyAskRateDto;
-import com.dynatrace.currency.nbpClient.exceptions.ConversionToBigDecimalException;
-import com.dynatrace.currency.nbpClient.exceptions.InvalidCurrencyCodeException;
+import com.dynatrace.currency.utils.converters.exceptions.ConversionToBigDecimalException;
+import com.dynatrace.currency.utils.converters.exceptions.ConversionToCurrencyException;
+import com.dynatrace.currency.utils.mappers.ExchangeMapper;
+import com.dynatrace.currency.utils.mappers.RateMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -78,7 +78,7 @@ class ExchangeMapperTest {
 
         // WHEN & THEN
         assertThatThrownBy(() -> exchangeMapper.toAverageExchange(averageExchangeDto))
-                .isInstanceOf(InvalidCurrencyCodeException.class);
+                .isInstanceOf(ConversionToCurrencyException.class);
     }
 
     @Test
@@ -91,7 +91,7 @@ class ExchangeMapperTest {
 
         // WHEN & THEN
         assertThatThrownBy(() -> exchangeMapper.toAverageExchange(averageExchangeDto))
-                .isInstanceOf(InvalidCurrencyCodeException.class);
+                .isInstanceOf(ConversionToCurrencyException.class);
     }
 
     @Test
@@ -161,7 +161,7 @@ class ExchangeMapperTest {
 
         // WHEN & THEN
         assertThatThrownBy(() -> exchangeMapper.toBuyAskExchange(buyAskExchangeDto))
-                .isInstanceOf(InvalidCurrencyCodeException.class);
+                .isInstanceOf(ConversionToCurrencyException.class);
     }
 
     @Test
@@ -174,7 +174,7 @@ class ExchangeMapperTest {
 
         // WHEN & THEN
         assertThatThrownBy(() -> exchangeMapper.toBuyAskExchange(buyAskExchangeDto))
-                .isInstanceOf(InvalidCurrencyCodeException.class);
+                .isInstanceOf(ConversionToCurrencyException.class);
     }
 
     @Test

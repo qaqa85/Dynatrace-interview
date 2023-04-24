@@ -1,13 +1,13 @@
 package com.dynatrace.currency.nbpClient.mappers;
 
 import com.dynatrace.currency.averageExchange.AverageRate;
-import com.dynatrace.currency.averageExchange.mappers.RateMapper;
 import com.dynatrace.currency.buyAskExchange.BuyAskRate;
 import com.dynatrace.currency.nbpClient.dtos.AverageRateDto;
 import com.dynatrace.currency.nbpClient.dtos.AverageRateDto.AverageRateDtoBuilder;
 import com.dynatrace.currency.nbpClient.dtos.BuyAskRateDto;
 import com.dynatrace.currency.nbpClient.dtos.BuyAskRateDto.BuyAskRateDtoBuilder;
-import com.dynatrace.currency.nbpClient.exceptions.ConversionToBigDecimalException;
+import com.dynatrace.currency.utils.converters.exceptions.ConversionToBigDecimalException;
+import com.dynatrace.currency.utils.mappers.RateMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
