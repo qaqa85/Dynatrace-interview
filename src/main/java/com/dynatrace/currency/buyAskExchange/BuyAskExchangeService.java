@@ -30,7 +30,7 @@ class BuyAskExchangeService {
         BuyAskDto lowestBuyDto = getLowestBuyDto(buyAskExchange.rates());
 
         return new MajorDifferenceDto(
-                buyAskExchange.currencyCode(),
+                buyAskExchange.currencyCode().toString(),
                 DifferenceDto.builder()
                         .ask(highestAskDto)
                         .buy(lowestBuyDto)

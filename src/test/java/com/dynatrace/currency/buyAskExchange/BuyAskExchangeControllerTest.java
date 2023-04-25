@@ -15,7 +15,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Currency;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
@@ -82,7 +81,7 @@ class BuyAskExchangeControllerTest {
 
     private MajorDifferenceDtoBuilder getMajorDifferenceDto() {
         return MajorDifferenceDto.builder()
-                .currencyCode(Currency.getInstance("USD"))
+                .currencyCode("USD")
                 .difference(DifferenceDto.builder()
                         .difference(new BigDecimal("1.00"))
                         .ask(new BuyAskDto(DATE, new BigDecimal("3.00")))

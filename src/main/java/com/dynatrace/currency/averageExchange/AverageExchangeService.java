@@ -27,7 +27,7 @@ class AverageExchangeService {
         AverageExchange exchange = nbpClient.getAverageExchange(currency, date);
 
         return SingleAverageDto.builder()
-                .currencyCode(currency)
+                .currencyCode(currency.toString())
                 .average(toAverageDto(exchange.rates()))
                 .build();
     }
@@ -45,7 +45,7 @@ class AverageExchangeService {
         AverageDto max = getMaxAverage(exchange.rates());
 
         return MinMaxAverageDto.builder()
-                .currencyCode(exchange.currencyCode())
+                .currencyCode(exchange.currencyCode().toString())
                 .min(min)
                 .max(max)
                 .build();
