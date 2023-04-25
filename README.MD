@@ -25,7 +25,7 @@ Docker
 ```
 2. To run an image simply run command below. The image will listen on localhost:8080 
 ```
- docker run crrency_app -p 8080:8080 -t
+ docker run crrency_app -p 8080:8080
 ```
 Usage
 -----
