@@ -18,7 +18,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Currency;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
@@ -147,13 +146,13 @@ class AverageExchangeControllerTest {
 
     private SingleAverageDtoBuilder getSingleAverageDto() {
         return SingleAverageDto.builder()
-                .currencyCode(Currency.getInstance("USD"))
+                .currencyCode("USD")
                 .average(new AverageDto(DATE_FIRST, new BigDecimal("0.245")));
     }
 
     private MinMaxAverageDtoBuilder getMinMaxAverageDto() {
         return MinMaxAverageDto.builder()
-                .currencyCode(Currency.getInstance("USD"))
+                .currencyCode("USD")
                 .min(new AverageDto(DATE_SECOND, new BigDecimal("1.123")))
                 .max(new AverageDto(DATE_FIRST, new BigDecimal("1.451")));
     }

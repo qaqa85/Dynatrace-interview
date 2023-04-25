@@ -3,3 +3,6 @@ com:
     dyntrance:
       nbpClient:
         url: http://api.nbp.pl/api/exchangerates
+springdoc:
+  swagger-ui:
+    path: swagger

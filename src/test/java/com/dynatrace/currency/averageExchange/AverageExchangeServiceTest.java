@@ -73,7 +73,7 @@ class AverageExchangeServiceTest {
 
         // THEN
         assertThat(result).isInstanceOf(SingleAverageDto.class);
-        assertThat(result.currencyCode()).isEqualTo(Currency.getInstance(CURRENCY_CODE));
+        assertThat(result.currencyCode()).isEqualTo(CURRENCY_CODE);
         assertThat(result.average().date()).isEqualTo(DATE_FIRST);
         assertThat(result.average().value()).isEqualTo(new BigDecimal("0.421"));
     }
@@ -117,7 +117,7 @@ class AverageExchangeServiceTest {
 
         // THEN
         assertThat(result).isInstanceOf(MinMaxAverageDto.class);
-        assertThat(result.currencyCode()).isEqualTo(Currency.getInstance(CURRENCY_CODE));
+        assertThat(result.currencyCode()).isEqualTo(CURRENCY_CODE);
         assertThat(result.min().date()).isEqualTo(DATE_SECOND);
         assertThat(result.min().value()).isEqualTo(new BigDecimal("1.131"));
         assertThat(result.max().date()).isEqualTo(DATE_THIRD);
