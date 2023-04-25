@@ -19,8 +19,14 @@ java -jar build/libs/currency-0.0.1-SNAPSHOT.jar
 ```
 
 Docker
-(finish)
-
+1. From project folder execute command to build an image
+```
+ docker build . -t crrency_app
+```
+2. To run an image simply run command below. The image will listen on localhost:8080 
+```
+ docker run crrency_app -p 8080:8080 -t --name name
+```
 Usage
 -----
 ___
