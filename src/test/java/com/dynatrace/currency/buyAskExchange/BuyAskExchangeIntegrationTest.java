@@ -19,13 +19,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class BuyAskExchangeIntegrationTest {
     @Autowired
-    private MockMvc mockMvc;
+    MockMvc mockMvc;
 
     @Test
-    void shouldReturnRequestedDataFromNBP() throws Exception {
-        mockMvc.perform(get("/api/v1/exchanges/buy-ask/{currencyCode}", "USD")
-                .content(MediaType.APPLICATION_JSON_VALUE)
-                .param("last", "3"))
+    void shouldReturnDifferenceBetweenAverageValueInSpecificPeriod() throws Exception {
+        mockMvc.perform(get("/api/v1/exchanges/buy-ask/{currencyCode}/last/{last}", "USD", "3")
+                .content(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.currencyCode").value("USD"));

@@ -5,6 +5,7 @@ import com.dynatrace.currency.averageExchange.dto.MinMaxAverageDto;
 import com.dynatrace.currency.averageExchange.dto.SingleAverageDto;
 import com.dynatrace.currency.nbpClient.NbpClient;
 import com.dynatrace.currency.utils.exceptions.InvalidAverageExchangeRateSizeException;
+import com.dynatrace.currency.utils.exceptions.InvalidCurrencyCodeException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ class AverageExchangeService {
     private final NbpClient nbpClient;
 
     public SingleAverageDto getSingleAverageExchangeDto(String currencyCode, String dateString) {
-        Currency currency = getCurrencyFromString(currencyCode);
+        Currency currency = getCurrencyFromStringExcludedPLN(currencyCode);
         LocalDate date = getLocalDateFromString(dateString);
 
         AverageExchange exchange = nbpClient.getAverageExchange(currency, date);
@@ -32,7 +33,7 @@ class AverageExchangeService {
     }
 
     public MinMaxAverageDto getMinMaxAverageDto(String currencyCode, String lastQuotations) {
-        Currency currency = getCurrencyFromString(currencyCode);
+        Currency currency = getCurrencyFromStringExcludedPLN(currencyCode);
         Integer quotations = getQuotationsFromString(lastQuotations);
 
         AverageExchange exchange = nbpClient.getAverageExchange(currency, quotations);
@@ -85,4 +86,11 @@ class AverageExchangeService {
         return new AverageDto(singleRate.date(), singleRate.value());
     }
 
+    private Currency getCurrencyFromStringExcludedPLN(String currencyCode) {
+        if (currencyCode.equals("PLN")) {
+            throw new InvalidCurrencyCodeException("Insert a foreign currency code");
+        }
+
+        return getCurrencyFromString(currencyCode);
+    }
 }

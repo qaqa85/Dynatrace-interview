@@ -18,7 +18,7 @@ public class Converter {
     public static BigDecimal convertToBigDecimal(String string) throws ConversionToBigDecimalException {
         try {
             return new BigDecimal(string);
-        } catch (NumberFormatException ex) {
+        } catch (Exception ex) {
             log.error(ex.getMessage());
             throw new ConversionToBigDecimalException();
         }
@@ -27,9 +27,9 @@ public class Converter {
     public static Currency convertToCurrency(String string) throws ConversionToCurrencyException {
         try {
             return Currency.getInstance(string);
-        } catch (IllegalArgumentException | NullPointerException ex) {
+        } catch (Exception ex) {
             log.error(CURRENCY_CONVERSION_LOG);
-            throw new ConversionToCurrencyException(ex.getMessage());
+            throw new ConversionToCurrencyException(CURRENCY_CONVERSION_LOG);
         }
     }
 

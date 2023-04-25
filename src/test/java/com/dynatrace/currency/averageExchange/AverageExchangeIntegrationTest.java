@@ -19,13 +19,23 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class AverageExchangeIntegrationTest {
     @Autowired
-    private MockMvc mockMvc;
+    MockMvc mockMvc;
 
     @Test
-    void shouldReturnRequestedDataFromNBP() throws Exception {
-        mockMvc.perform(get("/api/v1/exchanges/average/{currencyCode}", "USD")
-                        .content(MediaType.APPLICATION_JSON_VALUE)
-                        .param("date", "2023-04-20"))
+    void shouldReturnSingleCurrencyData() throws Exception {
+        mockMvc.perform(get("/api/v1/exchanges/average/{currencyCode}/date/{date}",
+                        "USD", "2023-04-20")
+                        .content(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.currencyCode").value("USD"));
+    }
+
+    @Test
+    void shouldReturnMinMaxCurrencyDataInSpecificPeriod() throws Exception {
+        mockMvc.perform(get("/api/v1/exchanges/average/{currencyCode}/last/{date}",
+                        "USD", "3")
+                        .content(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.currencyCode").value("USD"));
