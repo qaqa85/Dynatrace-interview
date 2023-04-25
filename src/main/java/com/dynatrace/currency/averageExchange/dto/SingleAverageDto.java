@@ -7,5 +7,5 @@ import java.util.Currency;
 
 @Builder
 @JsonPropertyOrder({"currencyCode, average"})
-public record SingleAverageExchangeDto(Currency currencyCode, AverageDto average) {
+public record SingleAverageDto(Currency currencyCode, AverageDto average) {
 }

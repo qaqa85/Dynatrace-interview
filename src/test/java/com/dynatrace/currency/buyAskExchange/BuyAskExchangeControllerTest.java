@@ -36,11 +36,11 @@ class BuyAskExchangeControllerTest {
     @DisplayName("should return BadRequest when CurrencyCode is incorrect")
     public void shouldReturnBadRequestWhenCurrencyCodeIsIncorrect() throws Exception {
         // GIVEN
-        given(service.getMajorDifferenceIn(anyString(), anyString()))
+        given(service.getMajorDifference(anyString(), anyString()))
                 .willThrow(new InvalidCurrencyCodeException("Invalid code"));
 
         // WHEN & THEN
-        mockMvc.perform(get("/api/v1/exchanges/buy-ask/invalidCode?last=2"))
+        mockMvc.perform(get("/api/v1/exchanges/buy-ask/invalidCode/last/2"))
                 .andDo(print())
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$").value("Invalid code"));
@@ -51,11 +51,11 @@ class BuyAskExchangeControllerTest {
     @DisplayName("should return BadRequest when quotation is invalid")
     public void shouldReturnBadRequestWhenQuotationIsInvalid() throws Exception {
         // GIVEN
-        given(service.getMajorDifferenceIn(anyString(), anyString()))
+        given(service.getMajorDifference(anyString(), anyString()))
                 .willThrow(new InvalidLastQuotationsNumberException("Quotations number out of scope"));
 
         // WHEN & THEN
-        mockMvc.perform(get("/api/v1/exchanges/buy-ask/USD?last=invalidNumber"))
+        mockMvc.perform(get("/api/v1/exchanges/buy-ask/USD/last/invalidNumber"))
                 .andDo(print())
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$").value("Quotations number out of scope"));
@@ -65,11 +65,11 @@ class BuyAskExchangeControllerTest {
     @DisplayName("should return MajorDifferenceDto on successful")
     public void shouldReturnMajorDifferenceDtoOnSuccessful() throws Exception {
         // GIVEN
-        given(service.getMajorDifferenceIn(anyString(), anyString()))
+        given(service.getMajorDifference(anyString(), anyString()))
                 .willReturn(getMajorDifferenceDto().build());
 
         // WHEN & THEN
-        mockMvc.perform(get("/api/v1/exchanges/buy-ask/USD?last=1"))
+        mockMvc.perform(get("/api/v1/exchanges/buy-ask/USD/last/1"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.difference.difference").value(new BigDecimal("1.0")))
